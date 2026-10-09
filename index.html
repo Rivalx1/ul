@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Menu Cafe | Pilih & Tunjukkan ke Kasir</title>
+  <meta name="description" content="Pilih menu makanan dan minuman favorit Anda, tunjukkan ringkasan pesanan ke kasir.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22><text y=%2222%22 font-size=%2220%22>☕</text></svg>">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- Header Cafe -->
+    <header class="cafe-header">
+      <div class="header-badge">
+        <span class="status-dot"></span>
+        <span>Buka</span>
+      </div>
+      <h1 class="cafe-title">Uleni Donuts & Cafe</h1>
+      <p class="cafe-tagline">Pilih menu di bawah, lalu tunjukkan daftar pesanan ke kasir</p>
+    </header>
+
+    <!-- Search Box -->
+    <div class="search-wrapper">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" placeholder="Cari menu makanan atau minuman..." autocomplete="off">
+        <button id="clear-search" class="clear-btn" style="display: none;">✕</button>
+      </div>
+    </div>
+
+    <!-- Category Filter Bar (Sticky) -->
+    <div class="category-bar-wrapper">
+      <div class="category-bar" id="category-bar">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+
+    <!-- 1-Column Menu List -->
+    <main class="menu-section">
+      <div class="section-header">
+        <span class="section-title">Daftar Menu</span>
+        <span class="item-count" id="menu-count">Memuat menu...</span>
+      </div>
+
+      <div class="menu-list-single" id="menu-container">
+        <!-- Menu cards with big images rendered via JS -->
+      </div>
+    </main>
+
+    <!-- Bottom Sticky Bar (Ringkasan Cepat) -->
+    <div class="bottom-bar hidden" id="bottom-bar">
+      <div class="bottom-bar-content" onclick="openOrderModal()">
+        <div class="bar-left">
+          <div class="bar-cart-icon">
+            📋
+            <span class="bar-cart-badge" id="bar-cart-count">0</span>
+          </div>
+          <div class="bar-info">
+            <span class="bar-label">Total Pesanan:</span>
+            <span class="bar-total" id="bar-total-price">Rp 0</span>
+          </div>
+        </div>
+        <button class="btn-open-order">
+          <span>Lihat Pesanan</span>
+          <span>→</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal Ringkasan Pesanan untuk Kasir -->
+    <div class="modal-overlay" id="order-modal">
+      <div class="modal-sheet">
+        <div class="sheet-handle"></div>
+        <div class="sheet-header">
+          <div>
+            <h2 class="sheet-title">Pesanan Saya</h2>
+            <p class="sheet-subtitle">Tunjukkan layar ini ke kasir</p>
+          </div>
+          <button class="btn-close" onclick="closeOrderModal()">✕</button>
+        </div>
+
+        <!-- Banner Info Kasir -->
+        <div class="cashier-notice">
+          <span class="notice-icon">📢</span>
+          <div>
+            <strong>Tunjukkan layar ini ke kasir</strong>
+            <p>Kasir akan mencatat pesanan Anda dan memanggil nama Anda lewat speaker saat pesanan siap.</p>
+          </div>
+        </div>
+
+        <!-- Slip Nota Digital -->
+        <div class="receipt-card">
+          <div class="receipt-header">
+            <span>RINGKASAN MENU</span>
+            <span id="receipt-date">Hari Ini</span>
+          </div>
+
+          <div class="receipt-items" id="receipt-items-list">
+            <!-- Rendered via JS -->
+          </div>
+
+          <div class="receipt-divider"></div>
+
+          <div class="receipt-total-row">
+            <span>TOTAL PEMBAYARAN</span>
+            <strong id="receipt-grand-total">Rp 0</strong>
+          </div>
+        </div>
+
+        <!-- Tombol Aksi -->
+        <div class="modal-actions">
+          <button class="btn-secondary" onclick="resetOrder()">
+            🔄 Reset / Pesanan Baru
+          </button>
+          <button class="btn-primary" onclick="closeOrderModal()">
+            Tambah Menu Lain
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Lightbox Pembesar Gambar -->
+    <div class="lightbox-overlay" id="lightbox-modal" onclick="closeLightbox()">
+      <div class="lightbox-content" onclick="event.stopPropagation()">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <img id="lightbox-img" src="" alt="Perbesar Foto">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
